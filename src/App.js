@@ -12,6 +12,7 @@ function App() {
   return (
     <Router>
       <Header></Header>
+
       <Switch>
         <Route path="/home">
           <Home></Home>
