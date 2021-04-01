@@ -6,7 +6,7 @@ const Orders = () => {
   const [orderedItems, setOrderedItems] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/orders")
+    fetch("http://localhost:5000/orderedProducts")
       .then((res) => res.json())
       .then((data) => setOrderedItems(data));
   }, []);
@@ -28,19 +28,23 @@ const Orders = () => {
               Order is empty
             </Alert>
           ) : (
-            <ListGroup variant="flush">
+            <ListGroup variant="flush" className="text-center">
               {orderedItems.map((item, index) => (
                 <ListGroup.Item key={index}>
-                  <Row>
-                    <Col sm={2} md={2}>
-                      <Image src={item.image} alt={item.name} fluid />
+                  <Row className="d-flex justify-content-center align-items-center">
+                    <Col sm={3} md={3}>
+                      <Image src={item.imageURL} alt={item.name} fluid />
                     </Col>
                     <Col>
-                      <Link>{item.name}</Link>
+                      <Link to="/">
+                        <h6>{item.name}</h6>
+                      </Link>
                     </Col>
-                    <Col sm={6} md={6}>
-                      {item.qty || 1} x &euro;{item.price}= &euro;
-                      {item.qty * item.price}
+                    <Col sm={4} md={4}>
+                      <h6>
+                        {item.quantity || 1} x &euro;{item.price}= &euro;
+                        {item.quantity * item.price}
+                      </h6>
                     </Col>
                   </Row>
                 </ListGroup.Item>

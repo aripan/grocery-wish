@@ -43,32 +43,41 @@ const AddNewProduct = () => {
         <Card.Header as="h5">Add New Product</Card.Header>
         <Card.Body>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Row>
-              <Col>
-                <input
-                  name="name"
-                  defaultValue="test"
-                  ref={register}
-                  required
-                />
-              </Col>
-              <Col>
-                <input name="weight" ref={register} required />
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <input name="price" type="number" ref={register} required />
-              </Col>
-              <Col>
-                <input
-                  name="picture"
-                  type="file"
-                  onChange={handleImageUpload}
-                  required
-                />
-              </Col>
-            </Row>
+            <input
+              name="name"
+              placeholder="Product Name"
+              ref={register}
+              required
+            />
+
+            <input
+              name="weight"
+              placeholder="Product Weight"
+              ref={register}
+              required
+            />
+
+            <input
+              name="unit"
+              placeholder="Product Unit"
+              ref={register}
+              required
+            />
+
+            <input
+              name="price"
+              placeholder="Product Price"
+              type="number"
+              ref={register}
+              required
+            />
+
+            <input
+              name="picture"
+              type="file"
+              onChange={handleImageUpload}
+              required
+            />
 
             <input type="submit" />
           </form>
