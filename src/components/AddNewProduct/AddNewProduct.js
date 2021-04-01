@@ -41,7 +41,7 @@ const AddNewProduct = () => {
     <Container>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Row>
-          <Col sm={12} md={4} lg={3}>
+          <Col sm={12} md={6}>
             <label>Product Name</label>
             <br />
             <input
@@ -51,22 +51,12 @@ const AddNewProduct = () => {
               required
             />
           </Col>
-          <Col sm={12} md={4} lg={3}>
+          <Col sm={12} md={6}>
             <label>Weight</label>
             <br />
             <input
               name="weight"
               placeholder="Product Weight"
-              ref={register}
-              required
-            />
-          </Col>
-          <Col sm={12} md={4} lg={3}>
-            <label>Measurement unit</label>
-            <br />
-            <input
-              name="unit"
-              placeholder="Product Unit"
               ref={register}
               required
             />

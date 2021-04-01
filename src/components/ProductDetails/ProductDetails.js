@@ -6,7 +6,7 @@ const ProductDetails = ({
   productId,
   productName,
   productWeight,
-  productUnit,
+
   productPrice,
   productImage,
 }) => {
@@ -27,7 +27,6 @@ const ProductDetails = ({
       <Card.Body>
         <Card.Title>
           {productName}-{productWeight}
-          {productUnit}
         </Card.Title>
         <div className="d-flex justify-content-around align-items-center">
           <Card.Text style={{ fontSize: "16px", fontWeight: "700" }}>

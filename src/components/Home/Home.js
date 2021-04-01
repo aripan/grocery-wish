@@ -23,7 +23,6 @@ const Home = () => {
                 productId={pd._id}
                 productName={pd.name}
                 productWeight={pd.weight}
-                productUnit={pd.unit}
                 productPrice={pd.price}
                 productImage={pd.imageURL}
               ></ProductDetails>
