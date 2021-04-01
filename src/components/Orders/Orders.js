@@ -1,22 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Col, Container, Image, ListGroup, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import fakeData from "../../fakeProducts/fakeProducts.json";
 
 const Orders = () => {
-  const first3 = fakeData.slice(0, 3);
-  console.log(first3);
+  const [orderedItems, setOrderedItems] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/orders")
+      .then((res) => res.json())
+      .then((data) => setOrderedItems(data));
+  }, []);
 
   return (
     <Container>
       <Row>
         <Col>
           <h2 className="m-3">Ordered Items</h2>
-          {first3.length === 0 ? (
-            <Alert variant="success">Order is empty</Alert>
+          {orderedItems.length === 0 ? (
+            <Alert
+              variant="success"
+              style={{
+                fontSize: "20px",
+                fontWeight: "600",
+                textAlign: "center",
+              }}
+            >
+              Order is empty
+            </Alert>
           ) : (
             <ListGroup variant="flush">
-              {first3.map((item, index) => (
+              {orderedItems.map((item, index) => (
                 <ListGroup.Item key={index}>
                   <Row>
                     <Col sm={2} md={2}>
@@ -26,9 +39,8 @@ const Orders = () => {
                       <Link>{item.name}</Link>
                     </Col>
                     <Col sm={6} md={6}>
-                      {/* {item.qty} x &euro;{item.price}= &euro;
-                        {item.qty * item.price} */}
-                      ${item.price}
+                      {item.qty || 1} x &euro;{item.price}= &euro;
+                      {item.qty * item.price}
                     </Col>
                   </Row>
                 </ListGroup.Item>

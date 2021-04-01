@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container, Row, Table } from "react-bootstrap";
+import { useParams } from "react-router";
 
-const AddToBasket = () => {
+const Checkout = () => {
+  const { productId } = useParams();
+  const [checkOutItems, setCheckOutItems] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/products/${productId}`)
+      .then((res) => res.json())
+      .then((data) => setCheckOutItems(data));
+  }, [productId]);
+
   return (
     <Container>
       <Row className="mt-5">
@@ -18,13 +28,13 @@ const AddToBasket = () => {
           </thead>
           <tbody>
             <tr>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+              <td>{checkOutItems.name}</td>
+              <td>{checkOutItems.quantity || 1}</td>
+              <td>${checkOutItems.price}</td>
             </tr>
             <tr>
               <td colSpan="2">Total</td>
-              <td>Otto</td>
+              <td>${checkOutItems.price}</td>
             </tr>
           </tbody>
         </Table>
@@ -36,4 +46,4 @@ const AddToBasket = () => {
   );
 };
 
-export default AddToBasket;
+export default Checkout;

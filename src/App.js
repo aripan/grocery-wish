@@ -1,12 +1,12 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Orders from "./components/Orders/Orders";
 import Admin from "./components/Admin/Admin";
 import Deals from "./components/Deals/Deals";
 import NoMatchFound from "./components/NoMatchFound/NoMatchFound";
-import AddToBasket from "./components/AddToBasket/AddToBasket";
+import Checkout from "./components/Checkout/Checkout";
 
 function App() {
   return (
@@ -26,8 +26,8 @@ function App() {
         <Route path="/deals">
           <Deals></Deals>
         </Route>
-        <Route path="/addToBasket">
-          <AddToBasket></AddToBasket>
+        <Route path="/checkout/:productId">
+          <Checkout></Checkout>
         </Route>
         <Route exact path="/">
           <Home></Home>

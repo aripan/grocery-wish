@@ -3,6 +3,7 @@ import { Button, Card } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 const ProductDetails = ({
+  productId,
   productName,
   productWeight,
   productPrice,
@@ -20,7 +21,7 @@ const ProductDetails = ({
       <Card.Img
         variant="top"
         src={productImage}
-        style={{ maxHeight: "12rem" }}
+        style={{ maxHeight: "14rem" }}
       />
       <Card.Body>
         <Card.Title>
@@ -30,7 +31,7 @@ const ProductDetails = ({
           <Card.Text style={{ fontSize: "16px", fontWeight: "700" }}>
             ${productPrice}
           </Card.Text>
-          <LinkContainer to="/addToBasket">
+          <LinkContainer to={`/checkout/${productId}`}>
             <Button className="btn btn-success rounded-pill">Buy Now</Button>
           </LinkContainer>
         </div>
