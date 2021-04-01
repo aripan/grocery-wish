@@ -31,7 +31,7 @@ const ProductDetails = ({
         </Card.Title>
         <div className="d-flex justify-content-around align-items-center">
           <Card.Text style={{ fontSize: "16px", fontWeight: "700" }}>
-            ${productPrice}
+            &euro;{productPrice}
           </Card.Text>
           <LinkContainer to={`/checkout/${productId}`}>
             <Button className="btn btn-success rounded-pill">Buy Now</Button>

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Button, Container, Row, Table } from "react-bootstrap";
+import { Alert, Button, Container, Row, Table } from "react-bootstrap";
 import { useParams } from "react-router";
 
 const Checkout = () => {
   const { productId } = useParams();
   const [checkOutItems, setCheckOutItems] = useState([]);
   const [checkoutItemQuantity, setCheckoutItemQuantity] = useState(1);
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     fetch(`http://localhost:5000/products/${productId}`)
@@ -30,11 +31,29 @@ const Checkout = () => {
       body: JSON.stringify(newOrderedItem),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        if (data) {
+          setSuccessMessage(
+            "Selected Item has been added to your ordered item list"
+          );
+        }
+      });
   };
 
   return (
     <Container>
+      {successMessage && (
+        <Alert
+          variant="success"
+          style={{
+            fontSize: "20px",
+            fontWeight: "600",
+            textAlign: "center",
+          }}
+        >
+          {successMessage}
+        </Alert>
+      )}
       <Row className="mt-5">
         <h3>Checkout</h3>
       </Row>
@@ -60,11 +79,11 @@ const Checkout = () => {
               </td>
 
               {/* <td>{checkoutItemQuantity}</td> */}
-              <td>${checkOutItems.price}</td>
+              <td>&euro;{checkOutItems.price}</td>
             </tr>
             <tr>
               <td colSpan="2">Total</td>
-              <td>${checkoutItemQuantity * checkOutItems.price}</td>
+              <td>&euro;{checkoutItemQuantity * checkOutItems.price}</td>
             </tr>
           </tbody>
         </Table>

@@ -39,31 +39,43 @@ const AddNewProduct = () => {
 
   return (
     <Container>
-      <Card className="w-100 mt-md-5">
-        <Card.Header as="h5">Add New Product</Card.Header>
-        <Card.Body>
-          <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Row>
+          <Col sm={12} md={4} lg={3}>
+            <label>Product Name</label>
+            <br />
             <input
               name="name"
               placeholder="Product Name"
               ref={register}
               required
             />
-
+          </Col>
+          <Col sm={12} md={4} lg={3}>
+            <label>Weight</label>
+            <br />
             <input
               name="weight"
               placeholder="Product Weight"
               ref={register}
               required
             />
-
+          </Col>
+          <Col sm={12} md={4} lg={3}>
+            <label>Measurement unit</label>
+            <br />
             <input
               name="unit"
               placeholder="Product Unit"
               ref={register}
               required
             />
-
+          </Col>
+        </Row>
+        <Row>
+          <Col sm={12} md={6}>
+            <label>Price</label>
+            <br />
             <input
               name="price"
               placeholder="Product Price"
@@ -71,18 +83,23 @@ const AddNewProduct = () => {
               ref={register}
               required
             />
-
+          </Col>
+          <Col sm={12} md={6}>
+            <label>Image</label>
+            <br />
             <input
               name="picture"
               type="file"
               onChange={handleImageUpload}
               required
             />
+          </Col>
+        </Row>
 
-            <input type="submit" />
-          </form>
-        </Card.Body>
-      </Card>
+        <Row md={6}>
+          <input type="submit" />
+        </Row>
+      </form>
     </Container>
   );
 };
