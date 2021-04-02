@@ -1,32 +1,12 @@
 import React, { useState } from "react";
-import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 import axios from "axios";
-import { useForm } from "react-hook-form";
 
 const AddNewProduct = () => {
-  const { register, handleSubmit } = useForm();
+  const [name, setName] = useState("");
+  const [weight, setWeight] = useState(1);
+  const [price, setPrice] = useState(0);
   const [imageURL, setImageURL] = useState(null);
-
-  const onSubmit = (data) => {
-    const { name, weight, price } = data;
-    const addedNewProduct = {
-      name,
-      weight,
-      price,
-      imageURL,
-    };
-    console.log(addedNewProduct);
-
-    fetch("http://localhost:5000/addNewProducts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(addedNewProduct),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  };
 
   const handleImageUpload = (event) => {
     const imageData = new FormData();
@@ -37,59 +17,74 @@ const AddNewProduct = () => {
       .then((res) => setImageURL(res.data.data.display_url));
   };
 
-  return (
-    <Container>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Row>
-          <Col sm={12} md={6}>
-            <label>Product Name</label>
-            <br />
-            <input
-              name="name"
-              placeholder="Product Name"
-              ref={register}
-              required
-            />
-          </Col>
-          <Col sm={12} md={6}>
-            <label>Weight</label>
-            <br />
-            <input
-              name="weight"
-              placeholder="Product Weight"
-              ref={register}
-              required
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col sm={12} md={6}>
-            <label>Price</label>
-            <br />
-            <input
-              name="price"
-              placeholder="Product Price"
-              type="number"
-              ref={register}
-              required
-            />
-          </Col>
-          <Col sm={12} md={6}>
-            <label>Image</label>
-            <br />
-            <input
-              name="picture"
-              type="file"
-              onChange={handleImageUpload}
-              required
-            />
-          </Col>
-        </Row>
+  const submitHandler = (e) => {
+    e.preventDefault();
 
-        <Row md={6}>
-          <input type="submit" />
-        </Row>
-      </form>
+    const addedNewProduct = {
+      name,
+      weight,
+      price,
+      imageURL,
+      updateTime: new Date(),
+    };
+    console.log(addedNewProduct);
+
+    fetch("https://protected-tor-23806.herokuapp.com/addNewProducts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(addedNewProduct),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
+
+  return (
+    <Container style={{ maxWidth: "30rem" }}>
+      <Form onSubmit={submitHandler}>
+        <Form.Group controlId="name">
+          <Form.Label> Product Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId="weight">
+          <Form.Label> Product Weight</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter weight"
+            value={weight}
+            onChange={(e) => setWeight(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId="price">
+          <Form.Label>Product Price</Form.Label>
+          <Form.Control
+            type="number"
+            placeholder="Enter price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId="image">
+          <Form.Label>Product Image</Form.Label>
+          <Form.Control
+            type="file"
+            placeholder="Enter image"
+            onChange={handleImageUpload}
+          ></Form.Control>
+        </Form.Group>
+        <Button type="submit" variant="primary">
+          Add New Product
+        </Button>
+      </Form>
     </Container>
   );
 };

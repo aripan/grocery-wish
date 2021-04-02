@@ -9,7 +9,7 @@ const Checkout = () => {
   const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/products/${productId}`)
+    fetch(`https://protected-tor-23806.herokuapp.com/products/${productId}`)
       .then((res) => res.json())
       .then((data) => setCheckOutItems(data));
   }, [productId]);
@@ -23,7 +23,7 @@ const Checkout = () => {
       orderTime: new Date(),
     };
 
-    fetch("http://localhost:5000/addNewOrder", {
+    fetch("https://protected-tor-23806.herokuapp.com/addNewOrder", {
       method: "POST",
       headers: {
         "content-type": "application/json",

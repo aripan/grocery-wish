@@ -7,7 +7,7 @@ const Home = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://protected-tor-23806.herokuapp.com/products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
@@ -15,7 +15,12 @@ const Home = () => {
   return (
     <div>
       <Container>
-        <SearchBar></SearchBar>
+        <Row>
+          <Col sm={12} md={{ offset: "3" }}>
+            <SearchBar></SearchBar>
+          </Col>
+        </Row>
+
         <Row>
           {products.map((pd) => (
             <Col sm={12} md={6} lg={4} key={pd._id}>

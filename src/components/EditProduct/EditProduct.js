@@ -27,13 +27,16 @@ const EditProduct = ({ editableProduct }) => {
       updateTime: new Date(),
     };
 
-    fetch(`http://localhost:5000/products/${editableProduct._id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedProduct),
-    })
+    fetch(
+      `https://protected-tor-23806.herokuapp.com/products/${editableProduct._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedProduct),
+      }
+    )
       .then((res) => res.json())
       .then((data) => console.log(data));
   };

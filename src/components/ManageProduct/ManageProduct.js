@@ -34,7 +34,11 @@ const StyledTableRow = withStyles((theme) => ({
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 700,
+    minWidth: 600,
+  },
+
+  title: {
+    textAlign: "center",
   },
 });
 
@@ -43,7 +47,7 @@ const ManageProduct = ({ products, handleEditOption, handleDeleteOption }) => {
   // // const [deleteMessage, setDeleteMessage] = useState("");
 
   // useEffect(() => {
-  //   fetch("http://localhost:5000/products")
+  //   fetch("https://protected-tor-23806.herokuapp.com/products")
   //     .then((res) => res.json())
   //     .then((data) => setProducts(data));
   // }, []);
@@ -55,7 +59,7 @@ const ManageProduct = ({ products, handleEditOption, handleDeleteOption }) => {
   // };
 
   // const handleDeleteOption = (id) => {
-  //   const deleteURL = `http://localhost:5000/deleteProduct/${id}`;
+  //   const deleteURL = `https://protected-tor-23806.herokuapp.com/deleteProduct/${id}`;
   //   fetch(deleteURL, {
   //     method: "DELETE",
   //     headers: {
@@ -74,6 +78,7 @@ const ManageProduct = ({ products, handleEditOption, handleDeleteOption }) => {
 
   return (
     <Container>
+      <h4 className={classes.title}>Manage Products</h4>
       <TableContainer component={Paper}>
         {/* {deleteMessage && <Alert>{deleteMessage}</Alert>} */}
         <Table className={classes.table} aria-label="customized table">

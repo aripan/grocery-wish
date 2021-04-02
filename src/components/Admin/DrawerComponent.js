@@ -1,13 +1,11 @@
 import React from "react";
 import {
-  AppBar,
   Drawer,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
   makeStyles,
-  Toolbar,
   Typography,
 } from "@material-ui/core";
 import { AddCircleOutlineOutlined, SubjectOutlined } from "@material-ui/icons";
@@ -18,9 +16,9 @@ const drawerWidth = 240;
 const useStyle = makeStyles((theme) => {
   return {
     page: {
-      background: "#f9f9f9",
-      width: "100%",
-      padding: theme.spacing("3"),
+      //   background: "#f9f9f9",
+      marginLeft: "25%",
+      padding: theme.spacing(3),
     },
 
     drawer: {
@@ -28,51 +26,51 @@ const useStyle = makeStyles((theme) => {
     },
     drawerPaper: {
       width: drawerWidth,
+      background: "#3f3f5a",
+      color: "#fff",
     },
 
-    displayView: {
+    root: {
       display: "flex",
     },
 
     active: {
-      background: "#000",
+      background: "#d2d2e0",
+      color: "#000",
     },
 
     title: {
-      padding: theme.spacing("2"),
-      paddingTop: theme.spacing("3"),
-    },
-
-    appbar: {
-      width: `calc(100% -${drawerWidth}px)`,
+      padding: theme.spacing(2),
+      paddingTop: theme.spacing(3),
+      color: "#fff",
     },
   };
 });
 
 const menuItems = [
   {
-    text: "option 1",
+    text: "Add New Product",
     icon: <SubjectOutlined color="secondary" />,
-    path: "/deals/option1",
+    path: "/admin",
   },
   {
-    text: "option 2",
+    text: "Manage Products",
     icon: <AddCircleOutlineOutlined color="secondary" />,
-    path: "/deals/option2",
+    path: "/admin/manageProduct",
+  },
+  {
+    text: "Edit Product",
+    icon: <AddCircleOutlineOutlined color="secondary" />,
+    path: "/admin/editProduct",
   },
 ];
 
-const DrawerComponent = () => {
+const DrawerComponent = ({ children }) => {
   const classes = useStyle();
   const history = useHistory();
   const location = useLocation();
   return (
-    <div classes={classes.displayView}>
-      {/* <AppBar className={classes.appbar}>
-        <Toolbar>
-          <Typography>Welcome to the website ok ok</Typography>
-        </Toolbar>
-      </AppBar> */}
+    <div classes={classes.root}>
       <Drawer
         className={classes.drawer}
         variant="permanent"
@@ -104,14 +102,7 @@ const DrawerComponent = () => {
           ))}
         </List>
       </Drawer>
-      <div className={classes.page}>
-        <Router>
-          <Switch>
-            <Route path="/deals/option1"></Route>
-            <Route path="/deals/option2"></Route>
-          </Switch>
-        </Router>
-      </div>
+      <div className={classes.page}>{children}</div>
     </div>
   );
 };
