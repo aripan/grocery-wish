@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Image, Nav, Navbar } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { Link } from "react-router-dom";
+import { GroceryAuthContext } from "../../App";
 import avatar from "../../images/Avatar face.png";
 
 const Header = () => {
+  const [loggedInUser] = useContext(GroceryAuthContext);
+  console.log(loggedInUser);
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -26,7 +28,7 @@ const Header = () => {
             <LinkContainer to="/deals">
               <Nav.Link>Deals</Nav.Link>
             </LinkContainer>
-
+            <Nav.Link>{loggedInUser.name || "Test User"}</Nav.Link>
             <Image src={avatar} roundedCircle style={{ width: "30px" }} />
           </Nav>
         </Navbar.Collapse>
