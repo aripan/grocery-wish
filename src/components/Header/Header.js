@@ -6,13 +6,11 @@ import avatar from "../../images/Avatar face.png";
 
 const Header = () => {
   const [loggedInUser, setLoggedInUser] = useContext(GroceryAuthContext);
-  console.log(loggedInUser);
   const handleLogOut = () => {
     const loggedOutUser = {};
     setLoggedInUser(loggedOutUser);
   };
 
-  console.log(loggedInUser);
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="light" variant="light">

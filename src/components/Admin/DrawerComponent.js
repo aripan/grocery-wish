@@ -8,11 +8,14 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import { AddCircleOutlineOutlined, SubjectOutlined } from "@material-ui/icons";
+import {
+  AddCircleOutlineOutlined,
+  SubjectOutlined,
+  EditOutlined,
+} from "@material-ui/icons";
 import { useHistory, useLocation } from "react-router";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-const drawerWidth = 240;
+const drawerWidth = "25%";
 const useStyle = makeStyles((theme) => {
   return {
     page: {
@@ -49,18 +52,18 @@ const useStyle = makeStyles((theme) => {
 
 const menuItems = [
   {
-    text: "Add New Product",
+    text: "Manage Products",
     icon: <SubjectOutlined color="secondary" />,
     path: "/admin",
   },
   {
-    text: "Manage Products",
+    text: "Add New Product",
     icon: <AddCircleOutlineOutlined color="secondary" />,
-    path: "/admin/manageProduct",
+    path: "/admin/addNewProduct",
   },
   {
     text: "Edit Product",
-    icon: <AddCircleOutlineOutlined color="secondary" />,
+    icon: <EditOutlined color="secondary" />,
     path: "/admin/editProduct",
   },
 ];

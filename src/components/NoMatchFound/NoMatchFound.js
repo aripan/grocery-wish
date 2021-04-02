@@ -1,10 +1,13 @@
 import React from "react";
+import { Alert, Container } from "react-bootstrap";
 
 const NoMatchFound = () => {
   return (
-    <div>
-      <h2>Sorry No Match</h2>
-    </div>
+    <Container>
+      <Alert variant="danger" className="text-center m-3">
+        <h2>Sorry No Match Found</h2>
+      </Alert>
+    </Container>
   );
 };
 

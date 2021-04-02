@@ -1,10 +1,13 @@
 import React from "react";
+import { Alert, Container } from "react-bootstrap";
 
 const Deals = () => {
   return (
-    <div>
-      <h3>Here Deals</h3>
-    </div>
+    <Container>
+      <Alert variant="warning" className="text-center m-3">
+        <h3>Sorry, but No deal to reveal...</h3>
+      </Alert>
+    </Container>
   );
 };
 

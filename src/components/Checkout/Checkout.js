@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Alert, Button, Container, Row, Table } from "react-bootstrap";
 import { useParams } from "react-router";
+import { GroceryAuthContext } from "../../App";
 
 const Checkout = () => {
   const { productId } = useParams();
   const [checkOutItems, setCheckOutItems] = useState([]);
   const [checkoutItemQuantity, setCheckoutItemQuantity] = useState(1);
   const [successMessage, setSuccessMessage] = useState("");
+  const [loggedInUser, setLoggedInUser] = useContext(GroceryAuthContext);
 
   useEffect(() => {
     fetch(`https://protected-tor-23806.herokuapp.com/products/${productId}`)
@@ -20,6 +22,7 @@ const Checkout = () => {
       ...checkOutItems,
       quantity: checkoutItemQuantity,
       totalCost,
+      email: loggedInUser.email,
       orderTime: new Date(),
     };
 
@@ -75,7 +78,8 @@ const Checkout = () => {
                   defaultValue={checkoutItemQuantity}
                   min="1"
                   onChange={(e) => setCheckoutItemQuantity(e.target.value)}
-                />
+                />{" "}
+                * {checkOutItems.weight}
               </td>
 
               {/* <td>{checkoutItemQuantity}</td> */}

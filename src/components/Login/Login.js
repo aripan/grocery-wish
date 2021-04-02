@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Card, Container } from "react-bootstrap";
 import { useHistory, useLocation } from "react-router";
 import { GroceryAuthContext } from "../../App";
 import { signInWithGoogle } from "./firebase.config";
 
 const Login = () => {
   const [loggedInUser, setLoggedInUser] = useContext(GroceryAuthContext);
+
   const history = useHistory();
   const location = useLocation();
 
@@ -17,13 +18,23 @@ const Login = () => {
       history.replace(from);
     });
   };
-
   console.log(loggedInUser);
+
   return (
-    <div>
-      <h3>Sign in using your google account</h3>
-      <Button onClick={handleGoogleSignIn}>Sign In</Button>
-    </div>
+    <Container className="d-flex justify-content-center align-items-center">
+      <Card className="text-center m-3">
+        <Card.Header>
+          <h4>Login</h4>
+        </Card.Header>
+        <Card.Body>
+          <Card.Title>Sign in using your google account</Card.Title>
+
+          <Button variant="primary" onClick={handleGoogleSignIn}>
+            Login
+          </Button>
+        </Card.Body>
+      </Card>
+    </Container>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -10,8 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import { Container } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
-import Alert from "@material-ui/lab/Alert";
-import EditProduct from "../EditProduct/EditProduct";
+import { Alert } from "@material-ui/lab";
 import { Link } from "react-router-dom";
 
 const StyledTableCell = withStyles((theme) => ({
@@ -43,42 +42,17 @@ const useStyles = makeStyles({
 });
 
 const ManageProduct = ({ products, handleEditOption, handleDeleteOption }) => {
-  // const [products, setProducts] = useState([]);
-  // // const [deleteMessage, setDeleteMessage] = useState("");
-
-  // useEffect(() => {
-  //   fetch("https://protected-tor-23806.herokuapp.com/products")
-  //     .then((res) => res.json())
-  //     .then((data) => setProducts(data));
-  // }, []);
   const classes = useStyles();
-
-  // const handleEditOption = (id) => {
-  //   const findProductToEdit = products.find((pd) => pd._id === id);
-  //   return <EditProduct findProductToEdit={findProductToEdit}></EditProduct>;
-  // };
-
-  // const handleDeleteOption = (id) => {
-  //   const deleteURL = `https://protected-tor-23806.herokuapp.com/deleteProduct/${id}`;
-  //   fetch(deleteURL, {
-  //     method: "DELETE",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data) {
-  //         const filteredProducts = products.filter((pd) => pd._id !== id);
-  //         setProducts(filteredProducts);
-  //         // setDeleteMessage("Product has been deleted");
-  //       }
-  //     });
-  // };
 
   return (
     <Container>
-      <h4 className={classes.title}>Manage Products</h4>
+      <Alert severity="error" className={classes.title}>
+        <div>
+          <h4>Manage Products</h4>
+          <p>Deleting (or editing) products will bring changes in UI</p>
+        </div>
+      </Alert>
+      <br />
       <TableContainer component={Paper}>
         {/* {deleteMessage && <Alert>{deleteMessage}</Alert>} */}
         <Table className={classes.table} aria-label="customized table">

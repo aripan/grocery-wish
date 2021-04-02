@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AddNewProduct from "../AddNewProduct/AddNewProduct";
 import EditProduct from "../EditProduct/EditProduct";
-import Home from "../Home/Home";
 import ManageProduct from "../ManageProduct/ManageProduct";
 import DrawerComponent from "./DrawerComponent";
 
 const Admin = () => {
   const [products, setProducts] = useState([]);
-
   const [editableProduct, setEditableProduct] = useState({});
 
   useEffect(() => {
@@ -45,14 +43,14 @@ const Admin = () => {
       <DrawerComponent>
         <Switch>
           <Route exact path="/admin">
-            <AddNewProduct></AddNewProduct>
-          </Route>
-          <Route exact path="/admin/manageProduct">
             <ManageProduct
               products={products}
               handleEditOption={handleEditOption}
               handleDeleteOption={handleDeleteOption}
             ></ManageProduct>
+          </Route>
+          <Route exact path="/admin/addNewProduct">
+            <AddNewProduct></AddNewProduct>
           </Route>
           <Route exact path="/admin/editProduct">
             <EditProduct editableProduct={editableProduct}></EditProduct>

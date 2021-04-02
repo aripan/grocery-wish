@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Alert, Button, Container, Form } from "react-bootstrap";
 import axios from "axios";
 
 const EditProduct = ({ editableProduct }) => {
@@ -43,6 +43,9 @@ const EditProduct = ({ editableProduct }) => {
 
   return (
     <Container style={{ maxWidth: "30rem" }}>
+      <Alert variant="info">
+        <h4>Edit Product</h4>
+      </Alert>
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="name">
           <Form.Label> Product Name</Form.Label>

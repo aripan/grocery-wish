@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Alert, Col, Container, Image, ListGroup, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { GroceryAuthContext } from "../../App";
 
 const Orders = () => {
   const [orderedItems, setOrderedItems] = useState([]);
+  const [loggedInUser, setLoggedInUser] = useContext(GroceryAuthContext);
 
   useEffect(() => {
-    fetch("https://protected-tor-23806.herokuapp.com/orderedProducts")
+    fetch(
+      `https://protected-tor-23806.herokuapp.com/orderedProducts?email=${loggedInUser.email}`
+    )
       .then((res) => res.json())
       .then((data) => setOrderedItems(data));
-  }, []);
+  }, [loggedInUser.email]);
 
   return (
     <Container>
