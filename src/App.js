@@ -8,6 +8,7 @@ import Deals from "./components/Deals/Deals";
 import NoMatchFound from "./components/NoMatchFound/NoMatchFound";
 import Checkout from "./components/Checkout/Checkout";
 import Login from "./components/Login/Login";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 export const GroceryAuthContext = createContext();
 
@@ -26,18 +27,18 @@ function App() {
           <Route path="/home">
             <Home></Home>
           </Route>
-          <Route path="/orders">
+          <PrivateRoute path="/orders">
             <Orders></Orders>
-          </Route>
-          <Route path="/admin">
+          </PrivateRoute>
+          <PrivateRoute path="/admin">
             <Admin></Admin>
-          </Route>
+          </PrivateRoute>
           <Route path="/deals">
             <Deals></Deals>
           </Route>
-          <Route path="/checkout/:productId">
+          <PrivateRoute path="/checkout/:productId">
             <Checkout></Checkout>
-          </Route>
+          </PrivateRoute>
           <Route path="/login">
             <Login></Login>
           </Route>

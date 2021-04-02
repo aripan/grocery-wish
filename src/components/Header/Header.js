@@ -1,11 +1,17 @@
 import React, { useContext } from "react";
-import { Image, Nav, Navbar } from "react-bootstrap";
+import { Image, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { GroceryAuthContext } from "../../App";
 import avatar from "../../images/Avatar face.png";
 
 const Header = () => {
-  const [loggedInUser] = useContext(GroceryAuthContext);
+  const [loggedInUser, setLoggedInUser] = useContext(GroceryAuthContext);
+  console.log(loggedInUser);
+  const handleLogOut = () => {
+    const loggedOutUser = {};
+    setLoggedInUser(loggedOutUser);
+  };
+
   console.log(loggedInUser);
   return (
     <div>
@@ -28,7 +34,23 @@ const Header = () => {
             <LinkContainer to="/deals">
               <Nav.Link>Deals</Nav.Link>
             </LinkContainer>
-            <Nav.Link>{loggedInUser.name || "Test User"}</Nav.Link>
+            {loggedInUser.email ? (
+              <NavDropdown
+                title={loggedInUser.name || "Test User"}
+                id="basic-nav-dropdown"
+              >
+                <LinkContainer to="/">
+                  <NavDropdown.Item onClick={handleLogOut}>
+                    logout
+                  </NavDropdown.Item>
+                </LinkContainer>
+              </NavDropdown>
+            ) : (
+              <LinkContainer to="/login">
+                <Nav.Link>Login</Nav.Link>
+              </LinkContainer>
+            )}
+
             <Image src={avatar} roundedCircle style={{ width: "30px" }} />
           </Nav>
         </Navbar.Collapse>

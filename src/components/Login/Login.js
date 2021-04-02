@@ -1,13 +1,21 @@
 import React, { useContext } from "react";
 import { Button } from "react-bootstrap";
+import { useHistory, useLocation } from "react-router";
 import { GroceryAuthContext } from "../../App";
 import { signInWithGoogle } from "./firebase.config";
 
 const Login = () => {
   const [loggedInUser, setLoggedInUser] = useContext(GroceryAuthContext);
+  const history = useHistory();
+  const location = useLocation();
+
+  let { from } = location.state || { from: { pathname: "/" } };
 
   const handleGoogleSignIn = () => {
-    signInWithGoogle().then((res) => setLoggedInUser(res));
+    signInWithGoogle().then((res) => {
+      setLoggedInUser(res);
+      history.replace(from);
+    });
   };
 
   console.log(loggedInUser);
