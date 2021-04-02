@@ -9,6 +9,7 @@ import NoMatchFound from "./components/NoMatchFound/NoMatchFound";
 import Checkout from "./components/Checkout/Checkout";
 import Login from "./components/Login/Login";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import DrawerComponent from "./components/Admin/DrawerComponent";
 
 export const GroceryAuthContext = createContext();
 
@@ -27,13 +28,16 @@ function App() {
           <Route path="/home">
             <Home></Home>
           </Route>
+          <Route path="/adminDrawer">
+            <DrawerComponent></DrawerComponent>
+          </Route>
           <PrivateRoute path="/orders">
             <Orders></Orders>
           </PrivateRoute>
           <PrivateRoute path="/admin">
             <Admin></Admin>
           </PrivateRoute>
-          <Route path="/deals">
+          <Route exact path="/deals">
             <Deals></Deals>
           </Route>
           <PrivateRoute path="/checkout/:productId">
